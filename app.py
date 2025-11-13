@@ -41,3 +41,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         addr = sys.argv[1]
     verify_zk_contract(addr)
+f.write(f" | RPC:{RPC_URL.split('//')[1][:20]} | chain:{w3.eth.chain_id}\n")
