@@ -41,3 +41,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         addr = sys.argv[1]
     verify_zk_contract(addr)
+print(f"ℹ️ Using web3.py version: {Web3.__version__}")
