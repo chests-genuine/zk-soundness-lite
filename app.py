@@ -41,3 +41,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         addr = sys.argv[1]
     verify_zk_contract(addr)
+print("\033[92m✅ Done — verification successful!\033[0m")
