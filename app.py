@@ -8,9 +8,14 @@ from web3 import Web3
 RPC_URL = os.getenv("RPC_URL") or f"https://mainnet.infura.io/v3/{os.getenv('INFURA_API_KEY','')}"
 DEFAULT_CONTRACT = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"
 
-def verify_zk_contract(address):
+def verify_zk_contract(address: str) -> None:
     start = time.time()
-    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+    print(f"zk verifier starting (version {__version__})")
+    safe_url = RPC_URL
+    if "infura.io" in safe_url and "v3/" in safe_url:
+        safe_url = safe_url.split("v3/")[0] + "v3/****"
+    print(f"🌐 Using RPC endpoint: {safe_url}")
+    w3 = Web3(Web3.HTTPProvider(RPC_URL, request_kwargs={"timeout": RPC_TIMEOUT}))
     if not w3.is_connected():
         print("❌ RPC connection failed. Check RPC_URL/INFURA_API_KEY.")
         sys.exit(1)
