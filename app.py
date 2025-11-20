@@ -9,6 +9,9 @@ RPC_URL = os.getenv("RPC_URL") or f"https://mainnet.infura.io/v3/{os.getenv('INF
 DEFAULT_CONTRACT = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"
 
 def verify_zk_contract(address):
+     """Fetch contract bytecode, compute its SHA-256 hash, and append an integrity
+    snapshot to a local log file.
+    """
     start = time.time()
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
     if not w3.is_connected():
