@@ -4,7 +4,7 @@ import sys
 import time
 import hashlib
 from web3 import Web3
-
+__version__ = "0.1.0"
 RPC_URL = os.getenv("RPC_URL") or f"https://mainnet.infura.io/v3/{os.getenv('INFURA_API_KEY','')}"
 DEFAULT_CONTRACT = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"
 
