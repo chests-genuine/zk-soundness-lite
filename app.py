@@ -34,7 +34,7 @@ def verify_zk_contract(address):
     except Exception:
         pass
     print(f"⏱️ Verification time: {time.time() - start:.2f}s")
-    print("✅ Done — code integrity snapshot saved to verification_log.txt")
+       print("✅ Done — code integrity snapshot saved to verification_log.txt\n")
 
 if __name__ == "__main__":
     addr = DEFAULT_CONTRACT
