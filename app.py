@@ -18,8 +18,12 @@ def verify_zk_contract(address):
     if not Web3.is_address(address):
         print("❌ Invalid Ethereum address format.")
         sys.exit(1)
-    checksum = Web3.to_checksum_address(address)
-    code = w3.eth.get_code(checksum)
+        checksum = Web3.to_checksum_address(address)
+    try:
+        code = w3.eth.get_code(checksum)
+    except Exception as exc:
+        print(f"❌ Failed to fetch code for {checksum}: {exc}")
+        sys.exit(1)
     print(f"🧩 Bytecode length: {len(code)} bytes")
     if not code:
         print("⚠️ No bytecode found — address may be an EOA.")
