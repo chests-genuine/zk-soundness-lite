@@ -35,6 +35,17 @@ def verify_zk_contract(address):
         pass
     print(f"⏱️ Verification time: {time.time() - start:.2f}s")
     print("✅ Done — code integrity snapshot saved to verification_log.txt")
+    
+def main() -> None:
+    addr = DEFAULT_CONTRACT
+    if len(sys.argv) > 1:
+        addr = sys.argv[1]
+    if not addr:
+        print("❌ Empty address argument.")
+        sys.exit(1)
+    status = verify_zk_contract(addr)
+    if status != 0:
+        sys.exit(status)
 
 if __name__ == "__main__":
     addr = DEFAULT_CONTRACT
