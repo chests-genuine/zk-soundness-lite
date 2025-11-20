@@ -11,8 +11,8 @@ DEFAULT_CONTRACT = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"
 def verify_zk_contract(address):
     start = time.time()
     w3 = Web3(Web3.HTTPProvider(RPC_URL))
-    if not w3.is_connected():
-        print("❌ RPC connection failed. Check RPC_URL/INFURA_API_KEY.")
+     if not w3.is_connected():
+        print("❌ RPC connection failed. Check RPC_URL/INFURA_API_KEY and network connectivity.")
         sys.exit(1)
     print(f"🔗 Connected. Chain ID: {w3.eth.chain_id} | Block: {w3.eth.block_number}")
     if not Web3.is_address(address):
