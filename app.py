@@ -29,8 +29,9 @@ def verify_zk_contract(address):
     print(f"🛡️ Code SHA-256: {zk_hash}")
     # append log
     try:
-        with open("verification_log.txt", "a") as f:
-            f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} | {checksum} | {zk_hash}\n")
+             timestamp = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        with open(LOG_FILE, "a") as f:
+            f.write(f"{timestamp} | {checksum} | {zk_hash}\n")
     except Exception:
         pass
     print(f"⏱️ Verification time: {time.time() - start:.2f}s")
