@@ -22,7 +22,7 @@ def verify_zk_contract(address):
     code = w3.eth.get_code(checksum)
     print(f"🧩 Bytecode length: {len(code)} bytes")
     if not code:
-        print("⚠️ No bytecode found — address may be an EOA.")
+               print("⚠️ No bytecode found — address may be an EOA (externally-owned account).")
         return
     zk_hash = hashlib.sha256(code).hexdigest()
     print(f"🔎 Contract: {checksum}")
