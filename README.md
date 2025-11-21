@@ -1,5 +1,5 @@
 # README.md
-# repo: zk-soundness-lite
+# repo: zk-soundness-lite.
 
 Overview
 This small repository provides a lightweight utility to snapshot and verify on-chain contract bytecode integrity (useful when auditing ZK-related contracts or comparing deployments across networks). Inspired by projects in the web3 / zk space (Aztec, Zama, soundness tooling).
