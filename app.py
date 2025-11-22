@@ -4,7 +4,7 @@ import sys
 import time
 import hashlib
 from web3 import Web3
-
+QUIET = False
 RPC_URL = os.getenv("RPC_URL") or f"https://mainnet.infura.io/v3/{os.getenv('INFURA_API_KEY','')}"
 DEFAULT_CONTRACT = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"
 
@@ -35,7 +35,11 @@ def verify_zk_contract(address):
         pass
     print(f"⏱️ Verification time: {time.time() - start:.2f}s")
     print("✅ Done — code integrity snapshot saved to verification_log.txt")
-
+    
+def main() -> None:
+    global QUIET
+    if "--quiet" in sys.argv or "-q" in sys.argv:
+        QUIET = True
 if __name__ == "__main__":
     addr = DEFAULT_CONTRACT
     if len(sys.argv) > 1:
