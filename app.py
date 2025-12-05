@@ -1,4 +1,8 @@
 # app.py
+"""
+Simple CLI to fetch Ethereum contract bytecode and record a SHA-256 integrity
+snapshot for later comparison. Intended for quick zk/contract verification.
+"""
 import os
 import sys
 import time
