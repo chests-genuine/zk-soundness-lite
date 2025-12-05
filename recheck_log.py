@@ -288,10 +288,17 @@ def main() -> None:
 
     w3 = connect(rpc_url, timeout=args.timeout)
 
-    results: List[CheckResult] = []
+     results: List[CheckResult] = []
     for entry in entries:
         res = check_entry(w3, entry)
         results.append(res)
+
+    # Basic stats
+    total = len(results)
+    matches = sum(1 for r in results if r.status == "match")
+    mismatches = sum(1 for r in results if r.status == "mismatch")
+    no_code = sum(1 for r in results if r.status == "no_code")
+    errors = sum(1 for r in results if r.status == "error")
 
     if args.json:
         payload = {
@@ -299,9 +306,25 @@ def main() -> None:
             "rpc": rpc_url,
             "generatedAtUtc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "results": [asdict(r) for r in results],
+            "summary": {
+                "total": total,
+                "matches": matches,
+                "mismatches": mismatches,
+                "noCode": no_code,
+                "errors": errors,
+            },
         }
         print(json.dumps(payload, indent=2, sort_keys=True))
         return
+
+    print(format_human(results, args.log, rpc_url))
+    print()
+    print(
+        f"Summary: total={total}  "
+        f"matches={matches}  mismatches={mismatches}  "
+        f"no_code={no_code}  errors={errors}"
+    )
+
 
     print(format_human(results, args.log, rpc_url))
 
