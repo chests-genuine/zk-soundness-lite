@@ -20,6 +20,9 @@ def verify_zk_contract(address: str) -> None:
     if not w3.is_connected():
         print("❌ RPC connection failed. Check RPC_URL/INFURA_API_KEY.")
         sys.exit(1)
+        if not RPC_URL:
+    print("❌ No RPC_URL or INFURA_API_KEY configured.")
+    sys.exit(1)
     print(f"🔗 Connected. Chain ID: {w3.eth.chain_id} | Block: {w3.eth.block_number}")
     if not Web3.is_address(address):
         print("❌ Invalid Ethereum address format.")
