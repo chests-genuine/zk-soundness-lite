@@ -11,6 +11,8 @@ from web3 import Web3
 
 RPC_URL = os.getenv("RPC_URL") or f"https://mainnet.infura.io/v3/{os.getenv('INFURA_API_KEY','')}"
 DEFAULT_CONTRACT = "0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32"
+LOG_FILE = os.getenv("VERIFICATION_LOG_FILE", "verification_log.txt")
+RPC_TIMEOUT = int(os.getenv("RPC_TIMEOUT", "30"))  # seconds
 
 def verify_zk_contract(address: str) -> None:
     start = time.time()
