@@ -13,6 +13,7 @@ from typing import List, Optional
 
 from web3 import Web3
 
+__version__ = "0.1.0"
 
 DEFAULT_LOG_PATH = "verification_log.txt"
 DEFAULT_INFURA_MAINNET = "https://mainnet.infura.io/v3/{key}"
@@ -216,7 +217,18 @@ def parse_args() -> argparse.Namespace:
         type=int,
         help="Optionally limit the number of log entries to re-check (from the top).",
     )
+        p.add_argument(
+        "--fail-on-mismatch",
+        action="store_true",
+        help="Exit with code 2 if any mismatches / no_code / errors are found.",
+    )
+    p.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
     return p.parse_args()
+
 
 
 def format_human(results: List[CheckResult], log_path: str, rpc_url: str) -> str:
