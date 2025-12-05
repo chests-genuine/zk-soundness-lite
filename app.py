@@ -16,7 +16,7 @@ RPC_TIMEOUT = int(os.getenv("RPC_TIMEOUT", "30"))  # seconds
 
 def verify_zk_contract(address: str) -> None:
     start = time.time()
-    w3 = Web3(Web3.HTTPProvider(RPC_URL))
+       w3 = Web3(Web3.HTTPProvider(RPC_URL, request_kwargs={"timeout": RPC_TIMEOUT}))
     if not w3.is_connected():
         print("❌ RPC connection failed. Check RPC_URL/INFURA_API_KEY.")
         sys.exit(1)
